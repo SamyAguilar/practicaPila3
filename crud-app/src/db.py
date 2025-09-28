@@ -1,8 +1,8 @@
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
-# Cambia 'localhost' por la IP de tu servidor PostgreSQL
-DATABASE_IP = '192.168.0.106'  # Cambia esto por la IP de tu servidor
+# IP del servidor PostgreSQL - CAMBIA ESTA IP POR LA REAL
+DATABASE_IP = 'localhost'  # Cambia por: '192.168.1.100' o la IP de tu BD
 DATABASE_URL = f"postgresql://samyag:contra123456@{DATABASE_IP}:5432/pila3"
 
 def get_db():

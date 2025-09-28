@@ -53,7 +53,7 @@ def create_item():
         description = data.get('description', '')
         
         if not name:
-            return jsonify({'error': 'Name is required'}), 400
+            return jsonify({'error': 'El nombre es requerido'}), 400
         
         conn = get_db()
         cursor = conn.cursor()
@@ -66,7 +66,7 @@ def create_item():
         cursor.close()
         conn.close()
         
-        return jsonify({'id': item_id, 'message': 'Item created successfully'}), 201
+        return jsonify({'id': item_id, 'message': 'Elemento creado exitosamente'}), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
@@ -74,8 +74,8 @@ def create_item():
 def create_item_form():
     """Crear item desde formulario HTML"""
     try:
-        name = request.form.get('name')  # Cambié de 'data' a 'name'
-        description = request.form.get('description', '')  # Agregué descripción
+        name = request.form.get('name')
+        description = request.form.get('description', '')
         
         if not name:
             return "Error: El nombre es requerido", 400
@@ -103,7 +103,7 @@ def update_item(item_id):
         description = data.get('description', '')
         
         if not name:
-            return jsonify({'error': 'Name is required'}), 400
+            return jsonify({'error': 'El nombre es requerido'}), 400
         
         conn = get_db()
         cursor = conn.cursor()
@@ -113,13 +113,13 @@ def update_item(item_id):
         )
         
         if cursor.rowcount == 0:
-            return jsonify({'error': 'Item not found'}), 404
+            return jsonify({'error': 'Elemento no encontrado'}), 404
             
         conn.commit()
         cursor.close()
         conn.close()
         
-        return jsonify({'id': item_id, 'message': 'Item updated successfully'})
+        return jsonify({'id': item_id, 'message': 'Elemento actualizado exitosamente'})
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
@@ -132,12 +132,12 @@ def delete_item(item_id):
         cursor.execute('DELETE FROM items WHERE id = %s;', (item_id,))
         
         if cursor.rowcount == 0:
-            return jsonify({'error': 'Item not found'}), 404
+            return jsonify({'error': 'Elemento no encontrado'}), 404
             
         conn.commit()
         cursor.close()
         conn.close()
         
-        return jsonify({'result': True, 'message': 'Item deleted successfully'})
+        return jsonify({'result': True, 'message': 'Elemento eliminado exitosamente'})
     except Exception as e:
         return jsonify({'error': str(e)}), 400
